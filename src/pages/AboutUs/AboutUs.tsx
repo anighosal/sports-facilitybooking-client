@@ -1,7 +1,18 @@
+import Banner from "./Banner";
+import ContactInfo from "./ContactInfo";
+import Milestones from "./Milestones";
+
+import Mission from "./Mission.";
+import Team from "./Team";
+
 const AboutUs = () => {
   return (
     <div>
-      <h2>about us</h2>
+      <Banner></Banner>
+      <Mission></Mission>
+      <Team></Team>
+      <Milestones></Milestones>
+      <ContactInfo></ContactInfo>
     </div>
   );
 };

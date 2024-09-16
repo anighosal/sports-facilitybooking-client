@@ -4,7 +4,7 @@ import React from "react";
 const Special: React.FC = () => {
   return (
     <section
-      className="relative bg-cover bg-center bg-no-repeat text-white py-16 px-8 rounded-lg shadow-lg"
+      className="relative bg-cover bg-center bg-no-repeat text-white py-16 px-8 rounded-lg shadow-lg mb-10"
       style={{ backgroundImage: "url('/src/assets/img9.jpg')" }}
     >
       {/* Overlay for better text readability */}
@@ -12,7 +12,7 @@ const Special: React.FC = () => {
 
       {/* Content Section */}
       <div className="relative z-10 max-w-4xl mx-auto text-center  text-white">
-        <h2 className="text-4xl font-bold mb-6">
+        <h2 className="text-xl font-bold mb-6">
           Pay Once, Enjoy Lifetime Benefits!
         </h2>
         <p className="text-xl mb-8">
