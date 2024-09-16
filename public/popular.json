@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Olympic Swimming Pool",
+    "image": "https://i.ibb.co.com/1JrkqTQ/swimming.webp",
+    "description": "A world-class Olympic-sized swimming pool, perfect for competitive and recreational swimmers."
+  },
+  {
+    "id": "2",
+    "name": "Tennis Court",
+    "image": "https://i.ibb.co.com/YZCdxXw/tennis.jpg",
+    "description": "Premium tennis courts with high-quality surfaces, ideal for training and tournaments."
+  },
+  {
+    "id": "3",
+    "name": "Indoor Basketball Arena",
+    "image": "https://i.ibb.co.com/728st5H/basket.jpg",
+    "description": "An indoor arena designed for basketball games, featuring modern facilities."
+  },
+  {
+    "id": "4",
+    "name": "Football Ground",
+    "image": "https://i.ibb.co.com/WBCs3z4/footbal.jpg",
+    "description": "A FIFA-certified football ground, perfect for matches and training sessions."
+  },
+  {
+    "id": "5",
+    "name": "Fitness Gym",
+    "image": "https://i.ibb.co.com/CBv8NPH/gym.jpg",
+    "description": "A fully equipped gym with state-of-the-art fitness machines and equipment."
+  },
+  {
+    "id": "6",
+    "name": "Yoga Studio",
+    "image": "https://i.ibb.co.com/1qQ2Vz1/yoga.jpg",
+    "description": "A serene yoga studio designed for relaxation, mindfulness, and physical wellness."
+  }
+]

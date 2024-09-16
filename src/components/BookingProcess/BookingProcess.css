@@ -1,0 +1,64 @@
+.booking-process {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #047e29;
+  margin-bottom: 30px;
+}
+
+.steps-container {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.step-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.step-content {
+  max-width: 700px;
+}
+
+.step-content h3 {
+  font-size: 1.5rem;
+  color: #047e29;
+}
+
+.step-content p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.cta-container {
+  margin-top: 40px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #047e29;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.cta-button:hover {
+  background-color: #036922;
+}

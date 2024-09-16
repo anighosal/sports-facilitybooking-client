@@ -1,0 +1,22 @@
+{
+  "testimonials": [
+    {
+      "name": "John Doe",
+      "image": "https://i.ibb.co.com/4YJ2Xxc/images-2.jpg",
+      "rating": 5,
+      "description": "Sports Pulse is an outstanding facility! The coaches are highly skilled, and the equipment is top-notch. I've seen remarkable improvements in my fitness since joining."
+    },
+    {
+      "name": "Sarah Smith",
+      "image": "https://i.ibb.co.com/n19TT4s/images-1.jpg",
+      "rating": 4,
+      "description": "I love the variety of activities offered at Sports Pulse. The atmosphere is great, and the staff is friendly. It’s the perfect place to stay fit and have fun."
+    },
+    {
+      "name": "David Lee",
+      "image": "https://i.ibb.co.com/GF4Bx6M/images.jpg",
+      "rating": 5,
+      "description": "Sports Pulse has everything I need for my training. The facilities are modern and clean, and the staff provides exceptional support. Highly recommended!"
+    }
+  ]
+}
