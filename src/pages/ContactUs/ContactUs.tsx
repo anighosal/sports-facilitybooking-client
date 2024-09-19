@@ -1,7 +1,15 @@
+import Banner from "./Banner";
+import ContactForm from "./ContactForm";
+import ContactMap from "./ContactMap";
+
 const ContactUs = () => {
   return (
     <div>
-      <h2>contact us</h2>
+      <Banner></Banner>
+      <div className="flex">
+        <ContactForm></ContactForm>
+        <ContactMap></ContactMap>
+      </div>
     </div>
   );
 };
