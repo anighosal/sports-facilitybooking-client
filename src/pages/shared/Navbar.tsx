@@ -14,7 +14,6 @@ const Navbar: React.FC = () => {
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          {/* Logo */}
           <div className="text-xl font-semibold flex items-center">
             <img className="w-10 mr-2" src={logo} alt="SportPulse logo" />
             <h4 className="text-gray-700">
@@ -22,7 +21,6 @@ const Navbar: React.FC = () => {
             </h4>
           </div>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex space-x-8">
             <Link to="/" className="hover:text-primary">
               Home
@@ -44,7 +42,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleMobileMenu} className="focus:outline-none">
               {isMobileMenuOpen ? (
@@ -56,7 +53,6 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Links */}
         {isMobileMenuOpen && (
           <div className="md:hidden space-y-4 mt-4">
             <Link
