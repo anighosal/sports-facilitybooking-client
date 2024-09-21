@@ -10,13 +10,16 @@ const MainLayout = () => {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/";
+
+  const hideNavbarFooterRoutes = ["/login", "/users/create-user"];
+  const hideNavbarFooter = hideNavbarFooterRoutes.includes(location.pathname);
   return (
     <div>
-      <Navbar></Navbar>
+      {!hideNavbarFooter && <Navbar />}
       <Line></Line>
       {isHomePage && <HeroSection></HeroSection>}
       <Outlet></Outlet>
-      <Footer></Footer>
+      {!hideNavbarFooter && <Footer />}
       <ScrollToTop></ScrollToTop>
     </div>
   );

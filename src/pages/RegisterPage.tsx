@@ -1,13 +1,13 @@
-import LoginForm from "./LoginForm";
+import Register from "./Register";
 
-const Login = () => {
+const RegisterPage = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className=" p-6 rounded-lg shadow-lg w-96 border border-gray-300">
-        <LoginForm />
+        <Register></Register>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default RegisterPage;
