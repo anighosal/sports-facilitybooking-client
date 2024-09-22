@@ -1,30 +1,52 @@
-import { Button } from "antd";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetFacilitiesQuery } from "../../redux/api/baseApi";
+import { useGetFacilityDetailsQuery } from "../../redux/api/baseApi";
 
-const FacilityDetails = () => {
+const FacilityDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const {
-    data: facility,
-    error,
-    isLoading,
-  } = useGetFacilitiesQuery(id as string | undefined, {
-    skip: !id,
-  });
+  const { data, error, isLoading } = useGetFacilityDetailsQuery(id);
+  console.log(data);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching facility details.</p>;
+  if (!id) return <div>Error: Facility ID not found.</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading facility details.</div>;
 
   return (
-    <div>
-      <h2>{facility?.name}</h2>
-      {facility?.image && <img src={facility.image} alt={facility.name} />}
-      <p>Location: {facility?.location}</p>
-      <p>Price: ${facility?.pricePerHour}</p>
-      <p>Description: {facility?.description}</p>
-      <Button onClick={() => navigate("/booking")}>Book Now</Button>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 ">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-4">
+        {data.data ? (
+          <div>
+            <img
+              className="w-full h-48 object-cover"
+              src={data.data.image}
+              alt={data.data.name}
+            />
+            <div className="p-6">
+              <h3 className="text-lg font-semibold mb-2 text-gray-700">
+                {data.data.name}
+              </h3>
+              <p className="text-gray-800 mt-1">
+                Location: {data.data.location}
+              </p>
+              <p className="text-lg font-semibold text-gray-700 mt-4">
+                Price: ${data.data.pricePerHour}
+              </p>
+              <p className="text-gray-700 mt-2">{data.data.description}</p>
+
+              <button
+                onClick={() => navigate("/booking")}
+                className="mt-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-red-700 transition"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="p-6 text-gray-600">No facility found.</div>
+        )}
+      </div>
     </div>
   );
 };

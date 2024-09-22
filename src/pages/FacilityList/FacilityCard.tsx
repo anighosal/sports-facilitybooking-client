@@ -24,7 +24,7 @@ const FacilityCard: React.FC<FacilityCardProps> = ({ facility }) => {
       </p>
 
       <Link
-        to={`/facility/${facility.id}`}
+        to={`/facility/${facility._id}`}
         className="text-white bg-primary hover:bg-red-700 px-4 py-2 rounded-lg"
       >
         View Details

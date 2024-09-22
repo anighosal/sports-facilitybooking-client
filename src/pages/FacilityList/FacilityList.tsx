@@ -1,5 +1,3 @@
-// FacilityList.tsx
-
 import { useGetFacilitiesQuery } from "../../redux/api/baseApi";
 import FacilityCard from "./FacilityCard";
 
@@ -9,7 +7,7 @@ const FacilityList = () => {
   if (isLoading) return <div>Loading facilities...</div>;
   if (error) return <div>Failed to load facilities.</div>;
 
-  const facilities = data?.data || []; // Access the 'data' field from the API response
+  const facilities = data?.data || [];
 
   return (
     <div className="mt-10">

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TFacility } from "../../type/type";
+import { TAdmin, TFacility } from "../../type/type";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
@@ -52,6 +52,29 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["Facilities"],
     }),
+
+    addAdmin: builder.mutation<TAdmin, Partial<TAdmin>>({
+      query: (newAdmin) => ({
+        url: "/admin",
+        method: "POST",
+        body: newAdmin,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+    }),
+
+    checkAvailability: builder.query({
+      query: ({ date, facility }) =>
+        `/check-availability?date=${date}&facility=${facility}`,
+    }),
+
+    // Add the lazy query
+    lazyCheckAvailability: builder.query({
+      query: ({ date, facility }) =>
+        `/check-availability?date=${date}&facility=${facility}`,
+    }),
   }),
 });
 
@@ -61,4 +84,7 @@ export const {
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
   useGetFacilityDetailsQuery,
+  useAddAdminMutation,
+  useCheckAvailabilityQuery,
+  useLazyCheckAvailabilityQuery,
 } = baseApi;

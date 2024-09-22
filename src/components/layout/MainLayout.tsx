@@ -14,7 +14,7 @@ const MainLayout = () => {
   const hideNavbarFooterRoutes = ["/login", "/users/create-user"];
   const hideNavbarFooter = hideNavbarFooterRoutes.includes(location.pathname);
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {!hideNavbarFooter && <Navbar />}
       <Line></Line>
       {isHomePage && <HeroSection></HeroSection>}

@@ -1,7 +1,10 @@
-const BookingPage = () => {
+import React from "react";
+import AvailabilityChecker from "../../components/AvailibilityChecker/AvailibilityChecker";
+
+const BookingPage: React.FC = () => {
   return (
-    <div>
-      <h2>booking page</h2>
+    <div className="flex justify-center items-center">
+      <AvailabilityChecker></AvailabilityChecker>
     </div>
   );
 };

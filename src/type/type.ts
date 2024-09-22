@@ -1,4 +1,5 @@
 export type TFacility = {
+  _id: string;
   name: string;
   image: string;
   description: string;
@@ -12,4 +13,12 @@ export interface User {
   name: string;
   email: string;
   role: "admin" | "user";
+}
+
+export interface TAdmin {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
 }
