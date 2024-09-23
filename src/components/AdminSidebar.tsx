@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen }: { isOpen: boolean }) => {
           {isOpen && "Booking Management"}
         </NavLink>
         <NavLink
-          to="/admin/add-admin"
+          to="/admin/create-admin"
           className={({ isActive }) =>
             `flex items-center gap-2 ms-6 space-x-2 px-4 rounded ${
               isActive ? "text-primary " : "text-gray-700"

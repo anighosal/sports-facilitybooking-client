@@ -94,8 +94,8 @@ const router = createBrowserRouter([
         element: <Bookings />,
       },
       {
-        path: "add-admin",
-        element: <AddAdmin />,
+        path: "create-admin",
+        element: <AddAdmin></AddAdmin>,
       },
     ],
   },

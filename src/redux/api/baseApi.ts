@@ -1,12 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TAdmin, TFacility } from "../../type/type";
+import { RootState } from "../store";
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: "http://localhost:5001/api",
+  credentials: "include",
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    return headers;
+  },
+});
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
-    credentials: "include",
-  }),
+  baseQuery: baseQuery,
   tagTypes: ["Facilities"],
   endpoints: (builder) => ({
     getFacilities: builder.query<TFacility[], void>({
@@ -55,7 +67,7 @@ export const baseApi = createApi({
 
     addAdmin: builder.mutation<TAdmin, Partial<TAdmin>>({
       query: (newAdmin) => ({
-        url: "/admin",
+        url: "/create-admin",
         method: "POST",
         body: newAdmin,
         headers: {

@@ -6,11 +6,11 @@ interface FacilityState {
 }
 
 const initialState: FacilityState = {
-  currentPage: 1, // Start from page 1
-  totalPages: 1, // Default total pages
+  currentPage: 1,
+  totalPages: 1,
 };
 
-const facilitiesSlice = createSlice({
+const facilitySlice = createSlice({
   name: "facility",
   initialState,
   reducers: {
@@ -23,5 +23,5 @@ const facilitiesSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setTotalPages } = facilitiesSlice.actions;
-export default facilitiesSlice.reducer;
+export const { setCurrentPage, setTotalPages } = facilitySlice.actions;
+export default facilitySlice.reducer;

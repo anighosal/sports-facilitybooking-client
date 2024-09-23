@@ -12,12 +12,12 @@ const AddAdmin = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const adminData = {
       ...data,
       role: "admin",
     };
-    message.success("Facility added successfully!");
+    message.success("Admin added successfully!");
     console.log(adminData);
   };
 
