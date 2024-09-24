@@ -19,7 +19,7 @@ import Facility from "../pages/FacilityList/Facility";
 import FacilityDetailes from "../pages/FacilityList/FacilityDetails";
 import Home from "../pages/home/Home";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
+import SignupForm from "../pages/SignupForm";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +55,8 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "/users/create-user",
-        element: <Register></Register>,
+        path: "auth/signup",
+        element: <SignupForm></SignupForm>,
       },
     ],
   },

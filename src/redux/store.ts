@@ -14,7 +14,7 @@ import userReducer from "../redux/features/user/createUser";
 import { baseApi } from "./api/baseApi";
 import authReducer from "./features/auth/authSlice";
 import facilityReducer from "./features/facilities/facilitiesSlice";
-
+import signupReducer from "./features/signupApi/signupSlice";
 const persistConfig = {
   key: "auth",
   storage,
@@ -27,6 +27,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     user: userReducer,
     facility: facilityReducer,
+    signup: signupReducer,
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

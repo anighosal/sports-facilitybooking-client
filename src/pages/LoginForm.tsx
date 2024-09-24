@@ -148,7 +148,7 @@ const LoginForm = () => {
 
       <p className="text-center mb-3">
         New Here?{" "}
-        <Link to="/users/create-user">
+        <Link to="/auth/signup">
           <span className="text-blue-700">Create an account</span>
         </Link>
       </p>

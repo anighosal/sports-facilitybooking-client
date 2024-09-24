@@ -12,13 +12,15 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  address: string;
+  phone: string;
   role: "admin" | "user";
 }
 
-export interface TAdmin {
+export type TAdmin = {
   id: string;
   name: string;
   address: string;
   phone: string;
   email: string;
-}
+};
