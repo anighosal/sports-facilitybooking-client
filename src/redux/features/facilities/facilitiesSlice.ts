@@ -6,8 +6,8 @@ interface FacilityState {
 }
 
 const initialState: FacilityState = {
-  currentPage: 1, // Start from page 1
-  totalPages: 1, // Default total pages
+  currentPage: 1,
+  totalPages: 1,
 };
 
 const facilitiesSlice = createSlice({

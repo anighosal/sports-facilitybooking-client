@@ -163,13 +163,13 @@ const SignupForm: React.FC = () => {
           Sign Up
         </Button>
 
-        {errorMessages.length > 0 && (
+        {/* {errorMessages.length > 0 && (
           <ul style={{ color: "red" }}>
             {errorMessages.map((errorMessage, index) => (
               <li key={index}>{errorMessage}</li>
             ))}
           </ul>
-        )}
+        )} */}
 
         {/* {user && (
           <div>

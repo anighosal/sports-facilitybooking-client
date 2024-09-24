@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TAdmin, TFacility } from "../../type/type";
+import { TAdmin, TBooking, TFacility } from "../../type/type";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
@@ -65,6 +65,10 @@ export const baseApi = createApi({
       invalidatesTags: ["Facilities"],
     }),
 
+    getBookings: builder.query<TBooking, void>({
+      query: () => "/bookings",
+    }),
+
     addAdmin: builder.mutation<TAdmin, Partial<TAdmin>>({
       query: (newAdmin) => ({
         url: "/create-admin",
@@ -96,6 +100,7 @@ export const {
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
   useGetFacilityDetailsQuery,
+  useGetBookingsQuery,
   useAddAdminMutation,
   useCheckAvailabilityQuery,
   useLazyCheckAvailabilityQuery,
