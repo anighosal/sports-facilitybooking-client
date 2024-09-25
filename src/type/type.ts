@@ -9,7 +9,9 @@ export type TFacility = {
 };
 
 export type TBooking = {
+  _id: string | undefined;
   date: string;
+  data: string;
   startTime: string;
   endTime: string;
   user: string;

@@ -59,14 +59,33 @@ export const baseApi = createApi({
         url: `/facility/${id}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // If you need auth
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
       invalidatesTags: ["Facilities"],
     }),
 
     getBookings: builder.query<TBooking, void>({
-      query: () => "/bookings",
+      query: () => ({
+        url: "/bookings",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${"token"}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+    getUserBookings: builder.query<TBooking, void>({
+      query: () => ({
+        url: "/bookings/user",
+        headers: {
+          Authorization: `Bearer ${"token"}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+    getUserBookingsById: builder.query<TBooking, void>({
+      query: (id) => `/bookings/user/${id}`,
     }),
 
     addAdmin: builder.mutation<TAdmin, Partial<TAdmin>>({
@@ -86,7 +105,6 @@ export const baseApi = createApi({
         `/check-availability?date=${date}&facility=${facility}`,
     }),
 
-    // Add the lazy query
     lazyCheckAvailability: builder.query({
       query: ({ date, facility }) =>
         `/check-availability?date=${date}&facility=${facility}`,
@@ -101,6 +119,8 @@ export const {
   useDeleteFacilityMutation,
   useGetFacilityDetailsQuery,
   useGetBookingsQuery,
+  useGetUserBookingsQuery,
+  useGetUserBookingsByIdQuery,
   useAddAdminMutation,
   useCheckAvailabilityQuery,
   useLazyCheckAvailabilityQuery,

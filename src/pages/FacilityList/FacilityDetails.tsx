@@ -7,7 +7,6 @@ const FacilityDetails: React.FC = () => {
   const navigate = useNavigate();
 
   const { data, error, isLoading } = useGetFacilityDetailsQuery(id);
-  console.log(data);
 
   if (!id) return <div>Error: Facility ID not found.</div>;
   if (isLoading) return <div>Loading...</div>;
@@ -16,24 +15,24 @@ const FacilityDetails: React.FC = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 ">
       <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-4">
-        {data.data ? (
+        {data?.data ? (
           <div>
             <img
               className="w-full h-48 object-cover"
-              src={data.data.image}
-              alt={data.data.name}
+              src={data?.data?.image}
+              alt={data?.data?.name}
             />
             <div className="p-6">
               <h3 className="text-lg font-semibold mb-2 text-gray-700">
-                {data.data.name}
+                {data?.data?.name}
               </h3>
               <p className="text-gray-800 mt-1">
-                Location: {data.data.location}
+                Location: {data?.data?.location}
               </p>
               <p className="text-lg font-semibold text-gray-700 mt-4">
-                Price: ${data.data.pricePerHour}
+                Price: ${data?.data?.pricePerHour}
               </p>
-              <p className="text-gray-700 mt-2">{data.data.description}</p>
+              <p className="text-gray-700 mt-2">{data?.data?.description}</p>
 
               <button
                 onClick={() => navigate("/booking")}

@@ -1,7 +1,9 @@
 import { useGetBookingsQuery } from "../../redux/api/baseApi";
+import { useAppDispatch } from "../../redux/hooks";
 
 const Bookings: React.FC = () => {
   const { data, error, isLoading } = useGetBookingsQuery();
+  const dispatch = useAppDispatch();
 
   const bookings = data?.data || [];
 

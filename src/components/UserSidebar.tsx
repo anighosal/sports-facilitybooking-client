@@ -1,5 +1,5 @@
 // UserSidebar.tsx
-import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { HomeOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
 const UserSidebar = ({ isOpen }: { isOpen: boolean }) => {
@@ -23,29 +23,17 @@ const UserSidebar = ({ isOpen }: { isOpen: boolean }) => {
             {isOpen && "Dashboard"}
           </NavLink>
         </li>
+
         <li>
           <NavLink
-            to="/user/profile"
+            to="/user/bookings"
             className={({ isActive }) =>
               `flex items-center space-x-2 p-2 rounded ${
                 isActive ? "bg-blue-500 text-white" : "text-gray-700"
               }`
             }
           >
-            <UserOutlined />
-            {isOpen && "Profile"}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/user/settings"
-            className={({ isActive }) =>
-              `flex items-center space-x-2 p-2 rounded ${
-                isActive ? "bg-blue-500 text-white" : "text-gray-700"
-              }`
-            }
-          >
-            {isOpen && "Settings"}
+            {isOpen && "bookings"}
           </NavLink>
         </li>
       </ul>
