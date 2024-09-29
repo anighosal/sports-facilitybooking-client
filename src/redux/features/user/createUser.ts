@@ -9,24 +9,32 @@ export type TUser = {
   role: "admin" | "user";
   address: string;
 };
-const initialState = {
+
+interface UserState {
+  user: TUser | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: UserState = {
   user: null,
   loading: false,
   error: null,
 };
 
-export const createUser = createAsyncThunk(
-  "user/createUser",
-  async (userInfo: TUser, { rejectWithValue }) => {
-    const [createUser] = useCreateUserMutation();
-    try {
-      const response = await createUser(userInfo).unwrap();
-      return response;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
+export const createUser = createAsyncThunk<
+  TUser,
+  TUser,
+  { rejectValue: string }
+>("user/createUser", async (userInfo: TUser, { rejectWithValue }) => {
+  const [createUser] = useCreateUserMutation();
+  try {
+    const response = await createUser(userInfo).unwrap();
+    return response;
+  } catch (error: any) {
+    return rejectWithValue(error?.message || "Failed to create user");
   }
-);
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -46,11 +54,11 @@ const userSlice = createSlice({
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; // Save user data to state
+        state.user = action.payload;
       })
       .addCase(createUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || "An error occurred";
       });
   },
 });

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { Button, message } from "antd";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useSignupMutation } from "../redux/features/signupApi/signupApi";
 import { resetSignupState } from "../redux/features/signupApi/signupSlice";
 import { useAppDispatch } from "../redux/hooks";
@@ -23,8 +24,10 @@ const SignupForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignupFormInputs>();
-  const [signup, { isLoading, error: apiError }] = useSignupMutation();
-  const { success, user } = useSelector((state: RootState) => state.signup);
+  const [signup] = useSignupMutation();
+  const { success, user }: any = useSelector(
+    (state: RootState) => state.signup
+  );
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
@@ -39,18 +42,6 @@ const SignupForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (apiError && typeof apiError === "object") {
-      if ("message" in apiError) {
-        setErrorMessages([apiError.message]);
-      } else if ("errors" in apiError && Array.isArray(apiError.errors)) {
-        setErrorMessages(apiError.errors.map((error: any) => error.message));
-      } else {
-        setErrorMessages(["An unexpected error occurred"]);
-      }
-    }
-  }, [apiError]);
-
-  useEffect(() => {
     if (success && user) {
       console.log("User created successfully:", user);
       dispatch(resetSignupState());
@@ -58,7 +49,7 @@ const SignupForm: React.FC = () => {
   }, [success, user, dispatch]);
 
   return (
-    <div className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <div className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg mb-8">
       <form className="w-1/2 space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label
@@ -75,7 +66,6 @@ const SignupForm: React.FC = () => {
           />
           {errors.name && <p>{errors.name.message}</p>}
         </div>
-
         <div>
           <label
             className="block text-gray-700 font-medium mb-1"
@@ -97,7 +87,6 @@ const SignupForm: React.FC = () => {
           />
           {errors.email && <p>{errors.email.message}</p>}
         </div>
-
         <div>
           <label
             className="block text-gray-700 font-medium mb-1"
@@ -113,7 +102,6 @@ const SignupForm: React.FC = () => {
           />
           {errors.phone && <p>{errors.phone.message}</p>}
         </div>
-
         <div>
           <label
             className="block text-gray-700 font-medium mb-1"
@@ -129,7 +117,6 @@ const SignupForm: React.FC = () => {
           />
           {errors.address && <p>{errors.address.message}</p>}
         </div>
-
         <div>
           <label
             className="block text-gray-700 font-medium mb-1"
@@ -146,7 +133,6 @@ const SignupForm: React.FC = () => {
           />
           {errors.password && <p>{errors.password.message}</p>}
         </div>
-
         <div>
           <input
             type="hidden"
@@ -155,29 +141,16 @@ const SignupForm: React.FC = () => {
             value="user"
           />
         </div>
-
         <Button
           htmlType="submit"
-          className="w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+          className="w-full object-contain text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
         >
           Sign Up
         </Button>
-
-        {/* {errorMessages.length > 0 && (
-          <ul style={{ color: "red" }}>
-            {errorMessages.map((errorMessage, index) => (
-              <li key={index}>{errorMessage}</li>
-            ))}
-          </ul>
-        )} */}
-
-        {/* {user && (
-          <div>
-            <h3>Welcome, {user.name}!</h3>
-            <p>Email: {user.email}</p>
-            <p>Address: {user.address}</p>
-          </div>
-        )} */}
+        Already signup <br />
+        <Link to="/login">
+          <span className="text-blue-700">Log in</span>
+        </Link>
       </form>
     </div>
   );

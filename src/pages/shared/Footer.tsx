@@ -4,9 +4,9 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
-} from "react-icons/fa"; // Social media icons
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../../assets/badminton.png"; // Import your logo image
+import logo from "../../assets/badminton.png";
 import Line from "./Line";
 
 const Footer: React.FC = () => {
@@ -14,7 +14,6 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-700 text-white py-10">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Logo and About Section */}
           <div className="flex flex-col items-start mb-6">
             <img src={logo} alt="Logo" className="w-32 mb-4" />
             <p className="text-gray-400">
@@ -23,7 +22,6 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Contact Information */}
           <div className="flex flex-col mb-6">
             <Link to="/about" className="hover:text-primary">
               About Us

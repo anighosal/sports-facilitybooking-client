@@ -1,20 +1,25 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const createAdmin = createAsyncThunk(
-  "admin/add-admin",
-  async (adminData, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "'http://localhost:5000/api/admins'",
-        adminData
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
+interface ErrorResponse {
+  message: string;
+}
+
+export const createAdmin = createAsyncThunk<
+  { admin: any; message: string },
+  any,
+  { rejectValue: ErrorResponse }
+>("admin/add-admin", async (adminData, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/admins",
+      adminData
+    );
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(error.response.data as ErrorResponse);
   }
-);
+});
 
 const adminSlice = createSlice({
   name: "admin",
@@ -43,11 +48,15 @@ const adminSlice = createSlice({
         state.successMessage = action.payload.message;
         state.errorMessage = "";
       })
-      .addCase(createAdmin.rejected, (state, action) => {
-        state.loading = false;
-        state.successMessage = "";
-        state.errorMessage = action.payload.message;
-      });
+      .addCase(
+        createAdmin.rejected,
+        (state, action: PayloadAction<ErrorResponse | undefined>) => {
+          state.loading = false;
+          state.successMessage = "";
+
+          state.errorMessage = action.payload?.message || "An error occurred";
+        }
+      );
   },
 });
 

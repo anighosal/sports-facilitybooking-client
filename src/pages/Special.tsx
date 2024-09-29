@@ -1,4 +1,3 @@
-// LifetimeBenefitsSection.tsx
 import React from "react";
 
 const Special: React.FC = () => {
@@ -7,10 +6,8 @@ const Special: React.FC = () => {
       className="relative bg-cover bg-center bg-no-repeat text-white py-16 px-8 rounded-lg shadow-lg mb-10"
       style={{ backgroundImage: "url('/src/assets/img9.jpg')" }}
     >
-      {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      {/* Content Section */}
       <div className="relative z-10 max-w-4xl mx-auto text-center  text-white">
         <h2 className="text-xl font-bold mb-6">
           Pay Once, Enjoy Lifetime Benefits!

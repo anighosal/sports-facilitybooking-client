@@ -7,12 +7,9 @@ import {
 } from "../../redux/api/baseApi";
 
 const Facilities = () => {
-  const { data, isLoading, error } = useGetFacilitiesQuery();
+  const { data }: any = useGetFacilitiesQuery();
   const [deleteFacility] = useDeleteFacilityMutation();
   const navigate = useNavigate();
-
-  if (isLoading) return <div>Loading facilities...</div>;
-  if (error) return <div>Failed to load facilities.</div>;
 
   const facilities = data?.data || [];
   const handleDelete = async (id: string) => {
@@ -37,7 +34,7 @@ const Facilities = () => {
         <AiOutlinePlusCircle></AiOutlinePlusCircle>
       </Button>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {facilities.map((facility) => (
+        {facilities?.map((facility: any) => (
           <Card key={facility._id} title={facility.name} hoverable>
             <img
               className="w-full h-40 object-cover rounded-t-lg mb-4"

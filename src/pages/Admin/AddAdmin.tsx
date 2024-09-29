@@ -10,7 +10,7 @@ const AddAdmin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  }: any = useForm();
 
   const onSubmit = (data: any) => {
     const adminData = {

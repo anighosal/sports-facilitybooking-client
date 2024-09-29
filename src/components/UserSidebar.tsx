@@ -1,6 +1,7 @@
-// UserSidebar.tsx
 import { HomeOutlined } from "@ant-design/icons";
+import { AiOutlineHome } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import Line from "../pages/shared/Line";
 
 const UserSidebar = ({ isOpen }: { isOpen: boolean }) => {
   return (
@@ -9,7 +10,7 @@ const UserSidebar = ({ isOpen }: { isOpen: boolean }) => {
         isOpen ? "w-64" : "w-20"
       }`}
     >
-      <ul className="mt-10 space-y-4">
+      <ul className="mt-10 space-y-2">
         <li>
           <NavLink
             to="/user"
@@ -34,6 +35,23 @@ const UserSidebar = ({ isOpen }: { isOpen: boolean }) => {
             }
           >
             {isOpen && "bookings"}
+          </NavLink>
+        </li>
+
+        <li>
+          <Line></Line>
+        </li>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex items-center gap-2 ms-6 space-x-2 px-4 rounded ${
+                isActive ? "text-primary " : "text-gray-700"
+              }`
+            }
+          >
+            <AiOutlineHome />
+            {isOpen && "Home"}
           </NavLink>
         </li>
       </ul>

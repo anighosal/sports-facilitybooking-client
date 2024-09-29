@@ -30,9 +30,7 @@ const mockComments: Comment[] = [
 const TopComments: React.FC = () => {
   const [comments, setComments] = useState<Comment[]>([]);
 
-  // Simulate fetching data
   useEffect(() => {
-    // Replace with actual API call in real-world scenario
     setComments(mockComments);
   }, []);
 

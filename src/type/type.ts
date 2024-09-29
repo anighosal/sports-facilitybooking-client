@@ -15,7 +15,7 @@ export type TBooking = {
   startTime: string;
   endTime: string;
   user: string;
-  facility: string;
+  facility: TFacility;
   payableAmount: number;
   isBooked: "confirmed" | "unconfirmed" | "canceled";
 };

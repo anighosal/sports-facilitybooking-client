@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// Define the type for a single testimonial
 interface Testimonial {
   name: string;
   image: string;
@@ -11,7 +10,6 @@ interface Testimonial {
 const Testimonial: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
-  // Fetch the testimonials data from data.json
   useEffect(() => {
     fetch("/data.json")
       .then((response) => response.json())

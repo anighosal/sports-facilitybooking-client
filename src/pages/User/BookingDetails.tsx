@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useGetUserBookingsByIdQuery } from "../../redux/api/baseApi";
 
 const BookingDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data } = useGetUserBookingsByIdQuery(id);
+  const { id }: any = useParams<{ id: string }>();
+  const { data }: any = useGetUserBookingsByIdQuery(id);
   console.log(data);
 
   return (

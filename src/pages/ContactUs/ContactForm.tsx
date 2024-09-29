@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 
 const ContactForm = () => {
   const {
@@ -9,17 +9,13 @@ const ContactForm = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    // Handle the form submission here
-    // Send form data to API or email service
   };
 
   return (
-    <div className="max-w-4xl w-[50%] p-8  ">
-      {/* Contact Form */}
-
+    <div className="max-w-4xl w-[50%] p-8">
       <div className="border-2 rounded-lg p-5">
         <h2 className="text-center text-2xl font-bold text-gray-700">
-          contact us{" "}
+          Contact Us
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="mb-8 text-gray-700">
           <div className="mb-4">
@@ -30,7 +26,9 @@ const ContactForm = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
             />
             {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
+              <p className="text-red-500">
+                {(errors.name as FieldError).message}
+              </p>
             )}
           </div>
 
@@ -42,7 +40,9 @@ const ContactForm = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
             />
             {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
+              <p className="text-red-500">
+                {(errors.email as FieldError).message}
+              </p>
             )}
           </div>
 
@@ -54,7 +54,9 @@ const ContactForm = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md"
             />
             {errors.subject && (
-              <p className="text-red-500">{errors.subject.message}</p>
+              <p className="text-red-500">
+                {(errors.subject as FieldError).message}
+              </p>
             )}
           </div>
 
@@ -66,20 +68,20 @@ const ContactForm = () => {
               rows={5}
             ></textarea>
             {errors.message && (
-              <p className="text-red-500">{errors.message.message}</p>
+              <p className="text-red-500">
+                {(errors.message as FieldError).message}
+              </p>
             )}
           </div>
 
           <button
             type="submit"
-            className="px-6 py-2 bg-primary hover:bg-red-600 text-white rounded-md "
+            className="px-6 py-2 bg-primary hover:bg-red-600 text-white rounded-md"
           >
             Contact Us
           </button>
         </form>
       </div>
-
-      {/* Contact Details */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/badminton.png"; // Replace with your logo
+import logo from "../../assets/badminton.png";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,7 +10,6 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check authentication and user role (from API or localStorage)
     const token = localStorage.getItem("authToken");
     const role = localStorage.getItem("userRole");
 
@@ -44,7 +43,6 @@ const Navbar: React.FC = () => {
     <nav className="bg-white  fixed top-0 left-0 right-0 z-50 w-full">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          {/* Logo */}
           <div className="text-xl font-semibold flex items-center">
             <img className="w-10 mr-2" src={logo} alt="SportPulse logo" />
             <h4 className="text-gray-700">

@@ -9,7 +9,7 @@ import { TFacility } from "../../type/type";
 
 const UpdateFacility: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, isLoading, error } = useGetFacilitiesQuery();
+  const { data, isLoading } = useGetFacilitiesQuery();
   const [updateFacility] = useUpdateFacilityMutation();
   const navigate = useNavigate();
 
@@ -22,10 +22,11 @@ const UpdateFacility: React.FC = () => {
     isDeleted: false,
   });
 
+  const [isUpdated, setIsUpdated] = useState(false);
+
   useEffect(() => {
-    if (data && Array.isArray(data.data)) {
-      // Assuming data.data contains the facilities array
-      const facility = data.data.find((f: TFacility) => f._id === id);
+    if (data && Array.isArray(data)) {
+      const facility = data.find((f: TFacility) => f._id === id);
       if (facility) {
         setFormData(facility);
       } else {
@@ -46,18 +47,38 @@ const UpdateFacility: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!id) {
+      message.error("Facility ID is required.");
+      return;
+    }
+
     try {
-      const response = await updateFacility({ id, data: formData }).unwrap();
+      await updateFacility({ id, data: formData }).unwrap();
+      setIsUpdated(true);
       message.success("Facility updated successfully!");
-      navigate("/admin/facility"); // Navigate back to the facilities list
+
+      navigate("/admin/facility");
     } catch (error) {
       console.error("Error updating facility:", error);
       message.error("Failed to update facility. Please try again.");
     }
   };
 
-  if (isLoading) return <div>Loading facility...</div>;
-  if (error) return <div>Failed to load facility.</div>;
+  useEffect(() => {
+    if (isUpdated) {
+      setFormData({
+        name: "",
+        image: "",
+        description: "",
+        pricePerHour: 0,
+        location: "",
+        isDeleted: false,
+      });
+      setIsUpdated(false);
+    }
+  }, [isUpdated]);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="w-full mx-auto p-8 shadow-lg rounded-lg">

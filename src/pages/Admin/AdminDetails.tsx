@@ -1,5 +1,4 @@
 // import { useLocation } from "react-router-dom";
-// import { useGetAdminsQuery } from "../../redux/api/baseApi";
 
 // const AdminDetails = () => {
 //   const location = useLocation();

@@ -24,7 +24,7 @@ const LoginForm = () => {
   } = useForm<LoginFormInputs>({
     defaultValues: {
       email: "",
-      password: "programming-hero",
+      password: "",
     },
   });
 
@@ -48,8 +48,10 @@ const LoginForm = () => {
             ...user,
             role: res.data.role,
             id: "",
-            name: "",
+            name: res.data.name,
             email: "",
+            address: "",
+            phone: "",
           },
           token: res.token,
         })

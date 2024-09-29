@@ -1,14 +1,12 @@
 import { Button, Input, message } from "antd";
 import React, { useState } from "react";
-import {
-  useAddFacilityMutation,
-  useGetFacilitiesQuery,
-} from "../../redux/api/baseApi";
+import { useAddFacilityMutation } from "../../redux/api/baseApi";
+import { useAppDispatch } from "../../redux/hooks";
 import { TFacility } from "../../type/type";
 
 const AddFacility: React.FC = () => {
-  const { data: facilities, refetch } = useGetFacilitiesQuery();
   const [addFacility] = useAddFacilityMutation();
+  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<Partial<TFacility>>({
     name: "",
@@ -16,7 +14,6 @@ const AddFacility: React.FC = () => {
     description: "",
     pricePerHour: 0,
     location: "",
-    isDeleted: false,
   });
 
   const handleChange = (
@@ -31,8 +28,12 @@ const AddFacility: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log("Sending facility data:", formData);
+
     try {
-      await addFacility(formData).unwrap();
+      const response = await addFacility(formData).unwrap();
+      console.log("Response from backend:", response);
       message.success("Facility added successfully!");
       setFormData({
         name: "",
@@ -40,11 +41,9 @@ const AddFacility: React.FC = () => {
         description: "",
         pricePerHour: 0,
         location: "",
-        isDeleted: false,
       });
-
-      refetch();
     } catch (error) {
+      console.error("Failed to add facility:", error);
       message.error("Failed to add facility. Please try again.");
     }
   };
@@ -129,40 +128,6 @@ const AddFacility: React.FC = () => {
           Add Facility
         </Button>
       </form>
-
-      {/* Facility List */}
-      {/* <div className="mt-8">
-        <h2 className="text-2xl font-semibold text-center mb-6">Facilities</h2>
-        {facilities && facilities.length > 0 ? (
-          <table className="min-w-full bg-white">
-            <thead>
-              <tr>
-                <th className="text-left py-2 px-4">Name</th>
-                <th className="text-left py-2 px-4">Location</th>
-                <th className="text-left py-2 px-4">Price Per Hour</th>
-                <th className="text-left py-2 px-4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {facilities.map((facility) => (
-                <tr key={facility.name}>
-                  <td className="border px-4 py-2">{facility.name}</td>
-                  <td className="border px-4 py-2">{facility.location}</td>
-                  <td className="border px-4 py-2">${facility.pricePerHour}</td>
-                  <td className="border px-4 py-2">
-                    <Button className="mr-2" type="primary">
-                      Edit
-                    </Button>
-                    <Button danger>Delete</Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No facilities available.</p>
-        )}
-      </div> */}
     </div>
   );
 };

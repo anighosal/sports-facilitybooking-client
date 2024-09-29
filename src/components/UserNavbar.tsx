@@ -13,8 +13,6 @@ const UserNavbar = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
       </button>
       <h1 className="text-xl font-bold">User Dashboard</h1>
       <div>
-        <button className="text-gray-700">Profile</button>
-
         <button onClick={handleLogout}>Logout</button>
       </div>
     </header>

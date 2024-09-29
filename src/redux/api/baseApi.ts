@@ -3,7 +3,7 @@ import { TAdmin, TBooking, TFacility } from "../../type/type";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5001/api",
+  baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -19,7 +19,7 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["Facilities"],
+  // tagTypes: ["Facilities"],
   endpoints: (builder) => ({
     getFacilities: builder.query<TFacility[], void>({
       query: () => "/facility",
@@ -37,7 +37,6 @@ export const baseApi = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: ["Facilities"],
     }),
     updateFacility: builder.mutation<
       TFacility,
@@ -52,7 +51,7 @@ export const baseApi = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: ["Facilities"],
+      // invalidatesTags: ["Facilities"],
     }),
     deleteFacility: builder.mutation<void, string>({
       query: (id) => ({
@@ -62,7 +61,7 @@ export const baseApi = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: ["Facilities"],
+      // invalidatesTags: ["Facilities"],
     }),
 
     getBookings: builder.query<TBooking, void>({
@@ -88,6 +87,20 @@ export const baseApi = createApi({
       query: (id) => `/bookings/user/${id}`,
     }),
 
+    cancelBooking: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/bookings/${id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+    }),
+
+    getAdminDetailsByid: builder.query<TAdmin, void>({
+      query: (id) => `/${id}`,
+    }),
+
     addAdmin: builder.mutation<TAdmin, Partial<TAdmin>>({
       query: (newAdmin) => ({
         url: "/create-admin",
@@ -100,14 +113,27 @@ export const baseApi = createApi({
       }),
     }),
 
-    checkAvailability: builder.query({
+    getAvailableSlots: builder.query({
       query: ({ date, facility }) =>
-        `/check-availability?date=${date}&facility=${facility}`,
+        `check-availability?date=${date}&facility=${facility}`,
     }),
 
     lazyCheckAvailability: builder.query({
       query: ({ date, facility }) =>
         `/check-availability?date=${date}&facility=${facility}`,
+    }),
+    getWelcomeMessage: builder.query<{ message: string; user: TAdmin }, string>(
+      {
+        query: (id) => `/welcome/${id}`,
+      }
+    ),
+
+    createBooking: builder.mutation({
+      query: (bookingData) => ({
+        url: "create-booking",
+        method: "POST",
+        body: bookingData,
+      }),
     }),
   }),
 });
@@ -121,7 +147,10 @@ export const {
   useGetBookingsQuery,
   useGetUserBookingsQuery,
   useGetUserBookingsByIdQuery,
+  useCancelBookingMutation,
   useAddAdminMutation,
-  useCheckAvailabilityQuery,
+  useGetAvailableSlotsQuery,
+  useCreateBookingMutation,
   useLazyCheckAvailabilityQuery,
+  useGetWelcomeMessageQuery,
 } = baseApi;

@@ -1,4 +1,3 @@
-// FAQ.tsx
 import React from "react";
 
 interface FAQItem {

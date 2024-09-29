@@ -8,7 +8,6 @@ import img from "../assets/pc.png";
 const Process = () => {
   return (
     <div className="steps-container space-y-10">
-      {/* Step 1 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-center gap-6">
         <img
           src={img}
@@ -28,7 +27,6 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Step 2 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-center gap-6">
         <img
           src={img1}
@@ -46,7 +44,6 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Step 3 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-start gap-6">
         <img
           src={img4}
@@ -64,7 +61,6 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Step 4 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-start gap-6">
         <img
           src={img5}
@@ -82,7 +78,6 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Step 5 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-start gap-6">
         <img
           src={img6}
@@ -100,7 +95,6 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Step 6 */}
       <div className="step flex flex-col md:flex-row items-center  md:items-start gap-6">
         <img
           src={img7}

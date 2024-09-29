@@ -1,58 +1,68 @@
-import { useGetBookingsQuery } from "../../redux/api/baseApi";
-import { useAppDispatch } from "../../redux/hooks";
+import { Button, message } from "antd";
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  useCancelBookingMutation,
+  useGetUserBookingsQuery,
+} from "../../redux/api/baseApi";
 
-const Bookings: React.FC = () => {
-  const { data, error, isLoading } = useGetBookingsQuery();
-  const dispatch = useAppDispatch();
+const MyBookings: React.FC = () => {
+  const { data: bookings } = useGetUserBookingsQuery();
+  const [cancelBooking] = useCancelBookingMutation();
 
-  const bookings = data?.data || [];
-
-  if (isLoading) return <p>Loading bookings...</p>;
-  if (error) return <p>Error loading bookings</p>;
-
-  const getStatusLabel = (status: string | undefined) => {
-    switch (status) {
-      case "confirmed":
-        return "Confirmed";
-      case "canceled":
-        return "Canceled";
-      default:
-        return "Pending";
+  const handleCancel = async (id: string) => {
+    if (window.confirm("Are you sure you want to delete this booking?")) {
+      try {
+        await cancelBooking(id).unwrap();
+        message.success("Booking cancelled successfully");
+      } catch (error) {
+        console.error("Error while cancelling booking:", error);
+        message.error("Failed to cancel booking");
+      }
     }
   };
 
-  return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4 text-gray-700">All Bookings</h2>
+  const bookingList = Array.isArray(bookings?.data) ? bookings?.data : [];
 
-      {bookings.length > 0 ? (
-        <table className="min-w-full table-auto bg-white text-gray-700">
-          <thead>
-            <tr className="">
-              <th className="px-4 py-2">User</th>
-              <th className="px-4 py-2">Facility</th>
-              <th className="px-4 py-2">Date</th>
-              <th className="px-4 py-2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking: any) => (
-              <tr key={booking._id} className="border-t">
-                <td className="px-4 py-2">{booking.user?.name || "N/A"}</td>
-                <td className="px-4 py-2">{booking.facility?.name || "N/A"}</td>
-                <td className="px-4 py-2">
-                  {new Date(booking.date).toLocaleDateString()}
-                </td>
-                <td className="px-4 py-2">{getStatusLabel(booking.status)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No bookings found.</p>
-      )}
+  return (
+    <div className="text-gray-700 mx-auto">
+      <h2>My Bookings</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {bookingList.length > 0 ? (
+          bookingList.map((booking: any) => (
+            <div
+              key={booking._id}
+              className="border rounded-lg shadow-lg p-4 flex flex-col items-center"
+            >
+              <img
+                className="w-full h-32 object-cover rounded"
+                src={booking?.facility?.image}
+                alt={booking?.facility?.name}
+              />
+              <h3 className="mt-2 text-lg font-semibold">
+                {booking?.facility?.name}
+              </h3>
+              <div className="mt-2 flex space-x-2">
+                <Link to={`/user/bookings/${booking._id}`}>
+                  <Button className="bg-primary text-white">
+                    View Details
+                  </Button>
+                </Link>
+                <Button
+                  onClick={() => handleCancel(booking._id)}
+                  className="bg-red-600 text-white"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No bookings found.</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Bookings;
+export default MyBookings;

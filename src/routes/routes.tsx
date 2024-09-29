@@ -22,6 +22,7 @@ import Login from "../pages/Login";
 import SignupForm from "../pages/SignupForm";
 import BookingDetails from "../pages/User/BookingDetails";
 import MyBookings from "../pages/User/MyBookings";
+import UserDashboard from "../pages/User/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -111,7 +112,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: <UserDashboard></UserDashboard>,
       },
       {
         path: "bookings",
