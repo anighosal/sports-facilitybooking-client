@@ -1,12 +1,10 @@
 import { Button, Input, message } from "antd";
 import React, { useState } from "react";
 import { useAddFacilityMutation } from "../../redux/api/baseApi";
-import { useAppDispatch } from "../../redux/hooks";
 import { TFacility } from "../../type/type";
 
 const AddFacility: React.FC = () => {
   const [addFacility] = useAddFacilityMutation();
-  const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<Partial<TFacility>>({
     name: "",

@@ -12,7 +12,7 @@ export const createAdmin = createAsyncThunk<
 >("admin/add-admin", async (adminData, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/admins",
+      "https://sports-facility-booking-server-beta.vercel.app/api/admins",
       adminData
     );
     return response.data;

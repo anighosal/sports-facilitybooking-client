@@ -6,11 +6,11 @@ import { setUser } from "../authSlice";
 export const loginUser =
   (userInfo: { email: string; password: string }) =>
   async (dispatch: AppDispatch) => {
-    const [login] = useLoginMutation(); // Get the mutation function
+    const [login] = useLoginMutation();
 
     try {
-      const res = await login(userInfo).unwrap(); // Call the login mutation and unwrap the result
-      const user = verifyToken(res.token); // Assuming you have a function to decode the token
+      const res = await login(userInfo).unwrap();
+      const user = verifyToken(res.token);
       dispatch(
         setUser({
           user: {
@@ -19,12 +19,14 @@ export const loginUser =
             id: "",
             name: "",
             email: "",
+            address: "",
+            phone: "",
           },
           token: res.token,
         })
-      ); // Include role in the user object
+      );
     } catch (error) {
       console.error("Login failed: ", error);
-      throw error; // Rethrow the error if needed
+      throw error;
     }
   };

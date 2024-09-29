@@ -1,50 +1,31 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project name - sports facility booking
 
-Currently, two official plugins are available:
+backend mongoose + typescript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Dependencis-antd,axios,react-datepicker,react-router-hook
 
-## Expanding the ESLint configuration
+If you want to clone this project then go the the github: https://github.com/anighosal/sports-facilitybooking-client
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# then git clone open your cmd command or terminal then git clone https://github.com/anighosal/sports-facilitybooking-client.git
 
-- Configure the top-level `parserOptions` property like this:
+cd tab enter the project and code . and npm i setup .env file and npm run build
+you can open this project local browser
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+# Same for backend https://github.com/anighosal/sports-facility-booking-server
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+git clone https://github.com/anighosal/sports-facility-booking-server.git
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+# Normally user can visit this site, user can see all facilities and details, Also about page contact page visit without login.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# user can login page then show the signup button then go the sign up page and user first register then user login ..go to the user dashboard here is show his bookings if user create any booking then show his own booking. See the details booking and cancel booking
+
+# user see the booking page. if user want to book any facility then go the booking page here select date and facility id ,, if facility available then user can book that facility
+
+# Admin login email and pass go to admins dashboard. admin can create facility, update faciliy and delete facility.
+
+# Also admin can add admin
+
+client-live-link: https://sports-facilitybooking-client.vercel.app
+server-live-link: https://sports-facility-booking-server-beta.vercel.app

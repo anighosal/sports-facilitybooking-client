@@ -3,7 +3,7 @@ import { TAdmin, TBooking, TFacility } from "../../type/type";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://sports-facility-booking-server-beta.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;

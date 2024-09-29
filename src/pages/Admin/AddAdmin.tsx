@@ -1,24 +1,28 @@
 import { message } from "antd";
 import { useForm } from "react-hook-form";
 import { useAddAdminMutation } from "../../redux/api/baseApi";
-import { useAppDispatch } from "../../redux/hooks";
 
 const AddAdmin = () => {
-  const [addAdmin] = useAddAdminMutation();
-  const dispatch = useAppDispatch();
+  const [addAdmin, { isLoading }] = useAddAdminMutation();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  }: any = useForm();
+  } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     const adminData = {
       ...data,
       role: "admin",
     };
-    message.success("Admin added successfully!");
-    console.log(adminData);
+
+    try {
+      await addAdmin(adminData).unwrap();
+      message.success("Admin added successfully!");
+    } catch (error: any) {
+      message.error(`Failed to add admin: ${error.message}`);
+    }
   };
 
   return (
@@ -32,7 +36,9 @@ const AddAdmin = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none"
             {...register("name", { required: "Name is required" })}
           />
-          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          {errors.name?.message && (
+            <p className="text-red-500">{String(errors.name.message)}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -42,8 +48,8 @@ const AddAdmin = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none"
             {...register("email", { required: "Email is required" })}
           />
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
+          {errors.email?.message && (
+            <p className="text-red-500">{String(errors.email.message)}</p>
           )}
         </div>
 
@@ -54,8 +60,8 @@ const AddAdmin = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none"
             {...register("password", { required: "Password is required" })}
           />
-          {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
+          {errors.password?.message && (
+            <p className="text-red-500">{String(errors.password.message)}</p>
           )}
         </div>
 
@@ -66,8 +72,8 @@ const AddAdmin = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none"
             {...register("phone", { required: "Phone number is required" })}
           />
-          {errors.phone && (
-            <p className="text-red-500">{errors.phone.message}</p>
+          {errors.phone?.message && (
+            <p className="text-red-500">{String(errors.phone.message)}</p>
           )}
         </div>
 
@@ -77,8 +83,8 @@ const AddAdmin = () => {
             className="w-full px-3 py-2 border rounded focus:outline-none"
             {...register("address", { required: "Address is required" })}
           ></textarea>
-          {errors.address && (
-            <p className="text-red-500">{errors.address.message}</p>
+          {errors.address?.message && (
+            <p className="text-red-500">{String(errors.address.message)}</p>
           )}
         </div>
 
@@ -86,9 +92,12 @@ const AddAdmin = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+          disabled={isLoading}
+          className={`w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600 ${
+            isLoading ? "cursor-not-allowed opacity-50" : ""
+          }`}
         >
-          Create Admin
+          {isLoading ? "Creating Admin..." : "Create Admin"}
         </button>
       </form>
     </div>

@@ -28,7 +28,7 @@ const SignupForm: React.FC = () => {
   const { success, user }: any = useSelector(
     (state: RootState) => state.signup
   );
-  const [errorMessages, setErrorMessages] = useState<string[]>([]);
+  const [, setErrorMessages] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: SignupFormInputs) => {
